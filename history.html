@@ -650,11 +650,24 @@
 .service-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .service-gallery .photo img {
   transition: transform 0.4s ease;
+}
+
+.photo {
+  background-color: #1a1a1a;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.photo.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .service-gallery .photo:hover img {
@@ -828,143 +841,16 @@
       });
     }, {
       root: null,
-      rootMargin: "0px 0px -20% 0px", // срабатывает, когда фото почти внизу экрана
+      rootMargin: "0px 0px -20% 0px",
       threshold: 0.1
     });
 
     photos.forEach(photo => {
-      // Удалим .visible на всякий случай, если они остались
-      photo.classList.remove("visible");
+      // Убедимся, что у всех фото есть начальный класс для анимации
+      photo.classList.add("hidden");
       observer.observe(photo);
     });
-  });
-
-
-    const overlay = document.getElementById('menu-overlay');
-    const overlayText = document.getElementById('overlay-text');
-    const items = document.querySelectorAll('.menu-item');
-
-    const messages = {
-      contacts: 'Телеграм: @dekneslo           почта: 323232@mai.ru         инстаграм: ник',
-      uslugi: 'Нейрофотосессия - фотосессия с использованием искусственного интеллекта. Косплей-фотосессия. Обычня.',
-      about: 'Обо мне.'
-    };
-
-    let hideTimeout;
-
-    const header = document.querySelector('header');
-    const headerElements = header.querySelectorAll('*');
-
-    items.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        clearTimeout(hideTimeout);
-        const panel = item.dataset.panel;
-        overlayText.textContent = messages[panel] || '';
-        overlay.classList.add('active');
-        header.style.background = 'rgba(170, 170, 170, 0.92)';
-        headerElements.forEach(element => {
-          element.style.color = '#000';
-        });
-      });
-
-      item.addEventListener('mouseleave', () => {
-        hideTimeout = setTimeout(() => {
-          overlay.classList.remove('active');
-          header.style.background = 'rgba(0, 0, 0, 0.8)';
-          headerElements.forEach(element => {
-            element.style.color = '';
-          });
-        }, 300);
-      });
-    });
-
-    overlay.addEventListener('mouseenter', () => {
-      clearTimeout(hideTimeout);
-    });
-
-    overlay.addEventListener('mouseleave', () => {
-      overlay.classList.remove('active');
-      header.style.background = 'rgba(0, 0, 0, 0.8)';
-      headerElements.forEach(element => {
-        element.style.color = '';
-      });
-    });
-
- 
-
-    // --- Весь код для мобильного меню ---
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileSubmenu = document.getElementById('mobileSubmenu');
-      const backButton = document.getElementById('backButton');
-      const submenuContent = document.getElementById('submenuContent');
-      const mobileMenuItems = document.querySelectorAll('.mobile-menu-item[data-panel]');
-      const header = document.querySelector('header');
-      const headerElements = header.querySelectorAll('*');
-
-      if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-          mobileMenu.classList.add('active');
-          header.style.background = 'rgba(170, 170, 170, 0.92)';
-          headerElements.forEach(element => {
-            element.style.color = '#000';
-          });
-        });
-      }
-
-      mobileMenuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-          e.preventDefault();
-          const panel = item.dataset.panel;
-          const messages = {
-            contacts: 'Телеграм, почта, инстаграм — выбирай удобное.',
-            uslugi: 'Нейрофотосессия.',
-            about: 'Обо мне.'
-          };
-          const message = messages[panel] || '';
-          submenuContent.innerHTML = `
-            <h3 style="color: #000; font-size: 2rem; margin-bottom: 1rem;">${item.textContent}</h3>
-            <p style="color: #000; font-size: 1.5rem; text-align: center;">${message}</p>
-          `;
-          mobileMenu.classList.remove('active');
-          mobileSubmenu.classList.add('active');
-        });
-      });
-
-      if (backButton) {
-        backButton.addEventListener('click', function() {
-          mobileSubmenu.classList.remove('active');
-          mobileMenu.classList.add('active');
-        });
-      }
-
-      // Закрытие мобильного меню при клике вне его
-      if (mobileMenu) {
-        mobileMenu.addEventListener('click', function(e) {
-          if (e.target === mobileMenu) {
-            mobileMenu.classList.remove('active');
-            header.style.background = 'rgba(0, 0, 0, 0.8)';
-            headerElements.forEach(element => {
-              element.style.color = '';
-            });
-          }
-        });
-      }
-      if (mobileSubmenu) {
-        mobileSubmenu.addEventListener('click', function(e) {
-          if (e.target === mobileSubmenu) {
-            mobileSubmenu.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            header.style.background = 'rgba(0, 0, 0, 0.8)';
-            headerElements.forEach(element => {
-              element.style.color = '';
-            });
-          }
-        });
-      }
-    });
-    // --- Конец кода для мобильного меню ---
+});
   </script>
 </body>
 </html>
