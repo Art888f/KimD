@@ -84,13 +84,7 @@
         gap: 0.5rem;
       }
 
-      .nav-right > :nth-child(2) {
-        display: none;
-      }
-
-      .nav-left > :nth-child(1) {
-        display: none;
-      }
+     
 
       h1 {
         font-size: 1.1rem;
@@ -263,14 +257,6 @@
       h1 {
         font-size: 1.1rem;
         letter-spacing: 3px;
-      }
-
-      .nav-right > :nth-child(2) {
-        display: none;
-      }
-
-      .nav-left > :nth-child(1) {
-        display: none;
       }
 
       .nav-left, .nav-right {
@@ -479,14 +465,6 @@
         letter-spacing: 3px;
       }
 
-      .nav-right > :nth-child(2) {
-        display: none;
-      }
-
-      .nav-left > :nth-child(1) {
-        display: none;
-      }
-
       .nav-left, .nav-right {
         gap: 1rem;
         font-size: 0.8rem;
@@ -504,7 +482,7 @@
       }
     }
 
-@media (max-width: 338px) {
+@media (max-width: 339px) {
    header {
         padding: 0.8rem 1rem;
         flex-direction:  row;
@@ -516,20 +494,16 @@
         letter-spacing: 3px;
       }
 
-      .nav-right > :nth-child(2) {
-        display: none;
-      }
-
-      .nav-left > :nth-child(1) {
-        display: none;
-      }
-
       .nav-left, .nav-right {
         gap: 1rem;
       }
 
       .nav-left .menu-item,
       .nav-right a {
+        font-size: 0.7rem;
+      }
+
+      .nav-left a {
         font-size: 0.7rem;
       }
 
@@ -552,14 +526,39 @@
         letter-spacing: 3px;
       }
 
-      .nav-right > :nth-child(2) {
-        display: none;
+      .nav-left, .nav-right {
+        gap: 1rem;
+        font-size: 1rem;
       }
 
-      .nav-left > :nth-child(1) {
-        display: none;
+      .nav-left .menu-item,
+      .nav-right a {
+        font-size: 0.8rem;
       }
 
+      .nav-left a{
+        font-size: 0.8rem;
+      }
+
+      .video-bottom-text {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+   header {
+        padding: 0.8rem 1rem;
+        flex-direction:  row;
+        gap: 0.5rem;
+      }
+
+      h1 {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+      }
+      
       .nav-left, .nav-right {
         gap: 1rem;
         font-size: 1rem;
